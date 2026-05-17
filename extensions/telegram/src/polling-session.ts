@@ -1,6 +1,6 @@
 import { type RunOptions, run } from "@grammyjs/runner";
 import type { ChannelAccountSnapshot } from "openclaw/plugin-sdk/channel-contract";
-import type { TelegramNetworkConfig } from "openclaw/plugin-sdk/config-contracts";
+import type { OpenClawConfig, TelegramNetworkConfig } from "openclaw/plugin-sdk/config-contracts";
 import { drainPendingDeliveries } from "openclaw/plugin-sdk/delivery-queue-runtime";
 import {
   computeBackoff,
@@ -80,7 +80,7 @@ const resolvePollingStallThresholdMs = (value: number | undefined): number => {
 
 type TelegramPollingSessionOpts = {
   token: string;
-  config: Parameters<typeof createTelegramBot>[0]["config"];
+  config: OpenClawConfig;
   accountId: string;
   runtime: Parameters<typeof createTelegramBot>[0]["runtime"];
   proxyFetch: Parameters<typeof createTelegramBot>[0]["proxyFetch"];
